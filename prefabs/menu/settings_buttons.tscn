@@ -1,0 +1,63 @@
+[gd_scene load_steps=2 format=3 uid="uid://cmar8mw2p47nb"]
+
+[ext_resource type="Script" path="res://scripts/main_menu/settings_buttons.gd" id="1_bidmd"]
+
+[node name="SettingsButtons" type="VBoxContainer"]
+script = ExtResource("1_bidmd")
+
+[node name="FullscreenRow" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Fullscreen" type="Label" parent="FullscreenRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Fullscreen"
+
+[node name="FullscreenToggle" type="CheckButton" parent="FullscreenRow"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="HSeparator" type="HSeparator" parent="."]
+layout_mode = 2
+
+[node name="MasterVolumeRow" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="MasterVolume" type="Label" parent="MasterVolumeRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Main"
+
+[node name="MasterSlider" type="HSlider" parent="MasterVolumeRow"]
+unique_name_in_owner = true
+layout_mode = 2
+max_value = 1.0
+step = 0.001
+
+[node name="MusicVolumeRow" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Music" type="Label" parent="MusicVolumeRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Music"
+
+[node name="MusicSlider" type="HSlider" parent="MusicVolumeRow"]
+unique_name_in_owner = true
+layout_mode = 2
+max_value = 1.0
+step = 0.001
+
+[node name="SFXVolumeRow2" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="SFX" type="Label" parent="SFXVolumeRow2"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "SFX"
+
+[node name="SFXSlider" type="HSlider" parent="SFXVolumeRow2"]
+unique_name_in_owner = true
+layout_mode = 2
+max_value = 1.0
+step = 0.001

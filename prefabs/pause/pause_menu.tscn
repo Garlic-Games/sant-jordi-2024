@@ -1,0 +1,83 @@
+[gd_scene load_steps=6 format=3 uid="uid://bdh0gh5dw180o"]
+
+[ext_resource type="Script" path="res://scripts/pause_menu/pause_menu.gd" id="1_8nakt"]
+[ext_resource type="PackedScene" uid="uid://bms34wbd0mko4" path="res://prefabs/menu/settings_menu.tscn" id="2_hbhjv"]
+[ext_resource type="PackedScene" uid="uid://bef835xco60kq" path="res://prefabs/pause/confirm_menu.tscn" id="3_eexx2"]
+
+[sub_resource type="Gradient" id="Gradient_o5ph7"]
+offsets = PackedFloat32Array(0, 0.538961, 1)
+colors = PackedColorArray(1, 0.576471, 1, 1, 0.917647, 0.227451, 0.780392, 1, 1, 0.498039, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_amcwi"]
+gradient = SubResource("Gradient_o5ph7")
+
+[node name="PauseMenu" type="CanvasLayer"]
+script = ExtResource("1_8nakt")
+
+[node name="MainPauseMargin" type="MarginContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 400
+theme_override_constants/margin_top = 100
+theme_override_constants/margin_right = 400
+theme_override_constants/margin_bottom = 100
+
+[node name="MainPauseBackground" type="TextureRect" parent="MainPauseMargin"]
+layout_mode = 2
+texture = SubResource("GradientTexture2D_amcwi")
+
+[node name="MainPausePadding" type="MarginContainer" parent="MainPauseMargin"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="SettingsLayout" type="VBoxContainer" parent="MainPauseMargin/MainPausePadding"]
+layout_mode = 2
+
+[node name="Pause" type="Label" parent="MainPauseMargin/MainPausePadding/SettingsLayout"]
+layout_mode = 2
+text = "PAUSE"
+horizontal_alignment = 1
+
+[node name="Resume" type="Button" parent="MainPauseMargin/MainPausePadding/SettingsLayout" groups=["MenuButtons"]]
+layout_mode = 2
+text = "Resume"
+
+[node name="Settings" type="Button" parent="MainPauseMargin/MainPausePadding/SettingsLayout" groups=["MenuButtons"]]
+layout_mode = 2
+text = "Settings"
+
+[node name="Fill" type="Control" parent="MainPauseMargin/MainPausePadding/SettingsLayout"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="MainMenu" type="Button" parent="MainPauseMargin/MainPausePadding/SettingsLayout" groups=["MenuButtons"]]
+layout_mode = 2
+text = "Main Menu"
+
+[node name="ExitGame" type="Button" parent="MainPauseMargin/MainPausePadding/SettingsLayout" groups=["MenuButtons"]]
+layout_mode = 2
+text = "Exit Game"
+
+[node name="SettingsMenu" parent="." instance=ExtResource("2_hbhjv")]
+unique_name_in_owner = true
+visible = false
+
+[node name="ExitGameConfirmMenu" parent="." instance=ExtResource("3_eexx2")]
+unique_name_in_owner = true
+visible = false
+
+[node name="MainMenuConfirmMenu" parent="." instance=ExtResource("3_eexx2")]
+unique_name_in_owner = true
+visible = false
+
+[connection signal="pressed" from="MainPauseMargin/MainPausePadding/SettingsLayout/Settings" to="." method="open_settings"]
+[connection signal="pressed" from="MainPauseMargin/MainPausePadding/SettingsLayout/MainMenu" to="." method="open_main_confirmation"]
+[connection signal="pressed" from="MainPauseMargin/MainPausePadding/SettingsLayout/ExitGame" to="." method="open_exit_confirmation"]
+[connection signal="selection" from="ExitGameConfirmMenu" to="." method="choose_exit_game"]
+[connection signal="selection" from="MainMenuConfirmMenu" to="." method="choose_main_menu"]

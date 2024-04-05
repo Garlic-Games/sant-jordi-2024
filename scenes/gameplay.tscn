@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://cohpydgbvkuna"]
+
+[ext_resource type="PackedScene" uid="uid://bdh0gh5dw180o" path="res://prefabs/pause/pause_menu.tscn" id="1_khjpo"]
+[ext_resource type="Script" path="res://scripts/input/meta_gameplay_input.gd" id="2_leaqq"]
+[ext_resource type="PackedScene" uid="uid://dk0dddmpl201" path="res://prefabs/stream_utilities/button_group_sound_when_signal.tscn" id="3_a7qdk"]
+
+[node name="Gameplay" type="Node3D"]
+
+[node name="MetaGameplayInput" type="Node" parent="." node_paths=PackedStringArray("pause_menu")]
+script = ExtResource("2_leaqq")
+pause_menu = NodePath("../PauseMenu")
+
+[node name="PauseMenu" parent="." instance=ExtResource("1_khjpo")]
+main_menu_scene = "res://scenes/main_menu.tscn"
+
+[node name="UiButtonSounds" type="Node" parent="."]
+
+[node name="ButtonHover" parent="UiButtonSounds" instance=ExtResource("3_a7qdk")]
+button_group_name = "MenuButtons"
+signal_name = "mouse_entered"

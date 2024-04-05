@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://dny66k8gw1dwu"
+path="res://.godot/imported/Intro options screen .mp3-793b8ae6a7eb8ee5e022bf7f54830d5d.mp3str"
+
+[deps]
+
+source_file="res://art/music/main_menu/Intro options screen .mp3"
+dest_files=["res://.godot/imported/Intro options screen .mp3-793b8ae6a7eb8ee5e022bf7f54830d5d.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

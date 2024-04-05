@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://dk0dddmpl201"]
+
+[ext_resource type="AudioStream" uid="uid://cwruydldwsdg3" path="res://art/sounds/main_menu/click.wav" id="1_dil86"]
+[ext_resource type="Script" path="res://scripts/streams/button_group_sound_when_signal.gd" id="2_u0cxn"]
+
+[node name="button_group_sound_when_signal" type="AudioStreamPlayer"]
+stream = ExtResource("1_dil86")
+bus = &"SFX"
+script = ExtResource("2_u0cxn")

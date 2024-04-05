@@ -1,0 +1,59 @@
+[gd_scene load_steps=4 format=3 uid="uid://crxdwuvlnrsuk"]
+
+[ext_resource type="Script" path="res://scripts/main_menu/credits.gd" id="1_o4vjh"]
+
+[sub_resource type="Gradient" id="Gradient_a1mkl"]
+offsets = PackedFloat32Array(0, 0.538961, 1)
+colors = PackedColorArray(1, 0.576471, 1, 1, 0.917647, 0.227451, 0.780392, 1, 1, 0.498039, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_knwxd"]
+gradient = SubResource("Gradient_a1mkl")
+
+[node name="Credits" type="PanelContainer"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_o4vjh")
+
+[node name="CreditsMargin" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 100
+theme_override_constants/margin_top = 100
+theme_override_constants/margin_right = 100
+theme_override_constants/margin_bottom = 100
+
+[node name="CreditsBackground" type="TextureRect" parent="CreditsMargin"]
+layout_mode = 2
+texture = SubResource("GradientTexture2D_knwxd")
+
+[node name="CreditsPadding" type="MarginContainer" parent="CreditsMargin"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="Content" type="VBoxContainer" parent="CreditsMargin/CreditsPadding"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="CreditsMargin/CreditsPadding/Content"]
+layout_mode = 2
+text = "Credits
+"
+horizontal_alignment = 1
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CreditsMargin/CreditsPadding/Content"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "AAAAAAAA
+"
+
+[node name="Close" type="Button" parent="CreditsMargin/CreditsPadding/Content" groups=["MenuButtons"]]
+layout_mode = 2
+text = "Close"
+
+[connection signal="meta_clicked" from="CreditsMargin/CreditsPadding/Content/RichTextLabel" to="." method="open_link"]
+[connection signal="pressed" from="CreditsMargin/CreditsPadding/Content/Close" to="." method="close"]

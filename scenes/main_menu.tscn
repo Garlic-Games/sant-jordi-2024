@@ -1,0 +1,86 @@
+[gd_scene load_steps=9 format=3 uid="uid://c0kysbw474wqn"]
+
+[ext_resource type="Script" path="res://scripts/main_menu/main_menu.gd" id="1_7w5a6"]
+[ext_resource type="PackedScene" uid="uid://bms34wbd0mko4" path="res://prefabs/menu/settings_menu.tscn" id="2_eli5e"]
+[ext_resource type="AudioStream" uid="uid://dny66k8gw1dwu" path="res://art/music/main_menu/Intro options screen .mp3" id="3_hng3u"]
+[ext_resource type="PackedScene" uid="uid://crxdwuvlnrsuk" path="res://prefabs/menu/credits.tscn" id="3_juipk"]
+[ext_resource type="PackedScene" uid="uid://dk0dddmpl201" path="res://prefabs/stream_utilities/button_group_sound_when_signal.tscn" id="4_nwlex"]
+[ext_resource type="PackedScene" uid="uid://dcxkowmduxb5y" path="res://prefabs/menu/loading_panel.tscn" id="7_y4405"]
+
+[sub_resource type="Gradient" id="Gradient_fm03v"]
+colors = PackedColorArray(0.815686, 0, 0, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_obgld"]
+gradient = SubResource("Gradient_fm03v")
+fill = 1
+fill_from = Vector2(0.5, 0)
+
+[node name="MainMenu" type="CanvasLayer"]
+script = ExtResource("1_7w5a6")
+gameplay_scene = "res://scenes/gameplay.tscn"
+
+[node name="MainContainer" type="PanelContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MainBackground" type="TextureRect" parent="MainContainer"]
+layout_mode = 2
+texture = SubResource("GradientTexture2D_obgld")
+
+[node name="MainMargin" type="MarginContainer" parent="MainContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="Buttons" type="VBoxContainer" parent="MainContainer/MainMargin"]
+layout_mode = 2
+
+[node name="Spacer" type="Control" parent="MainContainer/MainMargin/Buttons"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Play" type="Button" parent="MainContainer/MainMargin/Buttons" groups=["MenuButtons"]]
+layout_mode = 2
+text = "Play"
+
+[node name="Settings" type="Button" parent="MainContainer/MainMargin/Buttons" groups=["MenuButtons"]]
+layout_mode = 2
+text = "Settings"
+
+[node name="Credits" type="Button" parent="MainContainer/MainMargin/Buttons" groups=["MenuButtons"]]
+layout_mode = 2
+text = "Credits"
+
+[node name="Exit" type="Button" parent="MainContainer/MainMargin/Buttons" groups=["MenuButtons"]]
+layout_mode = 2
+text = "Exit"
+
+[node name="Credits" parent="." instance=ExtResource("3_juipk")]
+unique_name_in_owner = true
+
+[node name="SettingsMenu" parent="." instance=ExtResource("2_eli5e")]
+unique_name_in_owner = true
+
+[node name="MainMenuMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_hng3u")
+autoplay = true
+bus = &"Music"
+
+[node name="ButtonSounds" type="Node" parent="."]
+
+[node name="ButtonsMouseEnteredSound" parent="ButtonSounds" instance=ExtResource("4_nwlex")]
+button_group_name = "MenuButtons"
+signal_name = "mouse_entered"
+
+[node name="LoadingPanel" parent="." instance=ExtResource("7_y4405")]
+unique_name_in_owner = true
+
+[connection signal="pressed" from="MainContainer/MainMargin/Buttons/Play" to="." method="start_game"]
+[connection signal="pressed" from="MainContainer/MainMargin/Buttons/Settings" to="." method="open_settings"]
+[connection signal="pressed" from="MainContainer/MainMargin/Buttons/Credits" to="." method="open_credits"]
+[connection signal="pressed" from="MainContainer/MainMargin/Buttons/Exit" to="." method="close_game"]
