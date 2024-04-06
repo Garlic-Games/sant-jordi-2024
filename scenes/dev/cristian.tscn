@@ -1,0 +1,41 @@
+[gd_scene load_steps=7 format=3 uid="uid://qh6g55pnmqpa"]
+
+[ext_resource type="PackedScene" uid="uid://caepi1vcgjfho" path="res://prefabs/player/player.tscn" id="1_ua7do"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_0twhg"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_oswvd"]
+sky_material = SubResource("ProceduralSkyMaterial_0twhg")
+
+[sub_resource type="Environment" id="Environment_wh1hf"]
+background_mode = 2
+sky = SubResource("Sky_oswvd")
+tonemap_mode = 2
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_40607"]
+size = Vector2(20, 20)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ox228"]
+size = Vector3(20, 0.226501, 20)
+
+[node name="Cristian" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_wh1hf")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
+shadow_enabled = true
+
+[node name="Player" parent="." instance=ExtResource("1_ua7do")]
+
+[node name="Floor" type="MeshInstance3D" parent="."]
+mesh = SubResource("PlaneMesh_40607")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Floor"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.107819, 0)
+shape = SubResource("BoxShape3D_ox228")
